@@ -9,10 +9,13 @@ public class ExampleThreshold {
 	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
 	//       might normally want to catch are described in the commnents below
 	public static void main(String args[]) throws Exception {
-		IPConnection ipcon = new IPConnection(host, port); // Create connection to brickd (Can throw IOException)
+		// Create connection to brickd
+		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
 
 		BrickletDistanceIR dir = new BrickletDistanceIR(UID); // Create device object
-		ipcon.addDevice(dir); // Add device to ip connection (Can throw IPConnection.TimeoutException)
+
+		// Add device to ip connection
+		ipcon.addDevice(dir); // Can throw IPConnection.TimeoutException
 		// Don't use device before it is added to a connection
 		
 
@@ -22,7 +25,8 @@ public class ExampleThreshold {
 		// Configure threshold for "smaller than 20 cm" (unit is mm)
 		dir.setDistanceCallbackThreshold('<', (short)200, (short)0);
 
-		// Add and implement distance reached listener (called if distance is smaller than 20 cm)
+		// Add and implement distance reached listener 
+		// (called if distance is smaller than 20 cm)
 		dir.addListener(new BrickletDistanceIR.DistanceReachedListener() {
 			public void distanceReached(int distance) {
 				System.out.println("Distance is smaller than 20cm: " + distance/10.0 + " cm");
