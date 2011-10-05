@@ -5,8 +5,8 @@ HOST = "localhost"
 PORT = 4223
 UID = "XYZ" # Change to your UID
 
-from ip_connection import IPConnection
-from bricklet_distance_ir import DistanceIR
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_distance_ir import DistanceIR
 
 # Callback for distance smaller than 20cm
 def cb_reached(distance):

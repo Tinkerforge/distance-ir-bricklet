@@ -5,8 +5,8 @@ HOST = "localhost"
 PORT = 4223
 UID = "XYZ" # Change to your UID
 
-from ip_connection import IPConnection
-from bricklet_distance_ir import DistanceIR
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_distance_ir import DistanceIR
 
 # Callback function for distance callback (parameter has unit mm)
 def cb_distance(distance):
