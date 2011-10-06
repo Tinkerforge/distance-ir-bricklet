@@ -7,6 +7,11 @@
 #include "bricklib/drivers/board/sam3s/SAM3S.h"
 #include "distance-ir.h"
 
+#define BRICKLET_HARDWARE_NAME "Distance IR Bricklet 1.0"
+#define BRICKLET_FIRMWARE_VERSION_MAJOR 1
+#define BRICKLET_FIRMWARE_VERSION_MINOR 0
+#define BRICKLET_FIRMWARE_VERSION_REVISION 0
+
 #define LOGGING_LEVEL LOGGING_DEBUG
 #define DEBUG_BRICKLET 0
 
