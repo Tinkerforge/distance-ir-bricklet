@@ -120,6 +120,6 @@ int32_t distance_from_analog_value(int32_t value) {
     return BC->distance_avg;
 }
 
-void tick(void) {
-	simple_tick();
+void tick(uint8_t tick_type) {
+	simple_tick(tick_type);
 }
