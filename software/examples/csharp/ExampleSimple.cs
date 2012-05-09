@@ -14,8 +14,7 @@ class Example
 		// Don't use device before it is added to a connection
 
 		// Get current distance (unit is mm)
-		ushort distance;
-		dir.GetDistance(out distance);
+		ushort distance = dir.GetDistance();
 
 		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
 
