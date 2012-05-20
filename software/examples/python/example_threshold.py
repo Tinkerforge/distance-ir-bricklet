@@ -13,10 +13,10 @@ def cb_reached(distance):
     print('Distance is smaller than 20cm: ' + str(distance/10.0) + ' cm')
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
+    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
 
     dist = DistanceIR(UID) # Create device object
-    ipcon.add_device(dist) # Add device to ip connection
+    ipcon.add_device(dist) # Add device to IP connection
     # Don't use device before it is added to a connection
 
     # Get threshold callbacks with a debounce time of 1 second (1000ms)

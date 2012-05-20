@@ -13,10 +13,10 @@ def cb_distance(distance):
     print('Distance: ' + str(distance/10.0) + ' cm')
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
+    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
 
     dist = DistanceIR(UID) # Create device object
-    ipcon.add_device(dist) # Add device to ip connection
+    ipcon.add_device(dist) # Add device to IP connection
     # Don't use device before it is added to a connection
 
     # Set Period for distance callback to 0.2s (200ms)
