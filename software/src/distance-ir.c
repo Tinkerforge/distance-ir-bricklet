@@ -14,7 +14,6 @@
 #define MAX_DISTANCE 128
 
 #define DISTANCE_DIVIDER 32
-#define DISTANCE_AVERAGE 50
 
 #define EEPROM_POSITION (I2C_EEPROM_INTERNAL_ADDRESS_PLUGIN + \
                          BRICKLET_PLUGIN_MAX_SIZE)
@@ -60,7 +59,12 @@ void invocation(uint8_t com, uint8_t *data) {
 }
 
 void constructor(void) {
-	BC->distance_avg = 0;
+	for(uint8_t i = 0; i < NUM_MOVING_AVERAGE; i++) {
+		BC->moving_average[i] = 0;
+	}
+	BC->moving_average_tick = 0;
+	BC->moving_average_sum = 0;
+
 	adc_channel_enable(BS->adc_channel);
 	simple_constructor();
 }
@@ -97,27 +101,26 @@ void set_sampling_point(uint8_t com, SetSamplingPoint *sm) {
 }
 
 int32_t analog_value_from_mc(int32_t value) {
-	return (uint16_t)BA->adc_channel_get_data(BS->adc_channel);
+	uint16_t analog_data = BA->adc_channel_get_data(BS->adc_channel);
+	BC->moving_average_sum = BC->moving_average_sum -
+	                         BC->moving_average[BC->moving_average_tick] +
+	                         analog_data;
+
+	BC->moving_average[BC->moving_average_tick] = analog_data;
+	BC->moving_average_tick = (BC->moving_average_tick + 1) % NUM_MOVING_AVERAGE;
+
+	return (BC->moving_average_sum + NUM_MOVING_AVERAGE/2)/NUM_MOVING_AVERAGE;
 }
 
 int32_t distance_from_analog_value(int32_t value) {
-	BC->distance_avg_sum += value;
+	uint16_t div_value = value/DISTANCE_DIVIDER;
+	uint8_t mod = div_value % DISTANCE_DIVIDER;
 
-	if(BC->tick % DISTANCE_AVERAGE == 0) {
-		uint16_t div_value = BC->distance_avg_sum/(DISTANCE_AVERAGE*
-		                                           DISTANCE_DIVIDER);
-		uint8_t mod = BC->distance_avg_sum/DISTANCE_AVERAGE % DISTANCE_DIVIDER;
+	uint16_t distance = ((DISTANCE_DIVIDER - mod)*lookup[div_value] +
+						mod*lookup[div_value+1])/DISTANCE_DIVIDER;
 
-		BC->distance_avg = ((DISTANCE_DIVIDER - mod)*lookup[div_value] +
-		                    mod*lookup[div_value+1])/DISTANCE_DIVIDER;
-
-		// Make mm
-		BC->distance_avg =  (BC->distance_avg + 5) / 10;
-
-		BC->distance_avg_sum = 0;
-	}
-
-    return BC->distance_avg;
+	// Make mm
+	return (distance + 5) / 10;
 }
 
 void tick(uint8_t tick_type) {
