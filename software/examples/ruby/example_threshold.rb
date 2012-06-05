@@ -19,7 +19,7 @@ ipcon.add_device dir # Add device to IP connection
 dir.set_debounce_period 10000
 
 # Register threshold reached callback for distance smaller than 20cm
-dir.register_callback BrickletDistanceIR::CALLBACK_DISTANCE_REACHED, do |distance|
+dir.register_callback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED) do |distance|
   puts "Distance is smaller than 20cm: #{distance/10.0} cm"
 end
 

@@ -21,7 +21,7 @@ ipcon.add_device dir # Add device to IP connection
 dir.set_distance_callback_period 200
 
 # Register distance callback (parameter has unit mm)
-dir.register_callback BrickletDistanceIR::CALLBACK_DISTANCE, do |distance|
+dir.register_callback(BrickletDistanceIR::CALLBACK_DISTANCE) do |distance|
   puts "Distance: #{distance/10.0} cm"
 end
 
