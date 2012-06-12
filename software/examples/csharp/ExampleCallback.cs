@@ -27,7 +27,8 @@ class Example
 		// Register distance callback to function DistanceCB
 		dir.RegisterCallback(new BrickletDistanceIR.Distance(DistanceCB));
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }

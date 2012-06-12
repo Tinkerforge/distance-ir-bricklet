@@ -32,18 +32,18 @@ int main() {
 	}
 	// Don't use device before it is added to a connection
 
+	// Get threshold callbacks with a debounce time of 1 second (1000ms)
+	distance_ir_set_debounce_period(&dist, 1000);
 
-    // Get threshold callbacks with a debounce time of 1 second (1000ms)
-    distance_ir_set_debounce_period(&dist, 1000);
-
-    // Register threshold reached callback to function cb_reached
-    distance_ir_register_callback(&dist,
+	// Register threshold reached callback to function cb_reached
+	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE_REACHED,
 	                              cb_reached);
-	
-    // Configure threshold for "smaller than 20cm" (unit is mm)
-    distance_ir_set_distance_callback_threshold(&dist, '<', 200, 0);
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	// Configure threshold for "smaller than 20cm" (unit is mm)
+	distance_ir_set_distance_callback_threshold(&dist, '<', 200, 0);
+
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }

@@ -28,7 +28,8 @@ class Example
 		// Configure threshold for "smaller than 20 cm" (unit is mm)
 		dir.SetDistanceCallbackThreshold('<', 200, 0);
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }

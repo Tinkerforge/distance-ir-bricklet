@@ -18,7 +18,8 @@ class Example
 
 		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }
