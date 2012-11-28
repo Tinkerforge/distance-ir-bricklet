@@ -9,11 +9,11 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_distance_ir import DistanceIR
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
+    ipcon = IPConnection() # Create IP connection
+    dist = DistanceIR(UID, ipcon) # Create device object
 
-    dist = DistanceIR(UID) # Create device object
-    ipcon.add_device(dist) # Add device to IP connection
-    # Don't use device before it is added to a connection
+    ipcon.connect(HOST, PORT) # Connect to brickd
+    # Don't use device before ipcon is connected
 
     # Get current distance (unit is mm)
     distance = dist.get_distance()
@@ -21,4 +21,3 @@ if __name__ == "__main__":
     print('Distance: ' + str(distance/10.0) + ' cm')
 
     raw_input('Press key to exit\n') # Use input() in Python 3
-    ipcon.destroy()
