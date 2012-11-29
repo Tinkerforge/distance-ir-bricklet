@@ -10,10 +10,11 @@ HOST = 'localhost'
 PORT = 4223
 UID = '6Vw' # Change to your UID
 
-ipcon = IPConnection.new HOST, PORT # Create IP connection to brickd
-dir = BrickletDistanceIR.new UID # Create device object
-ipcon.add_device dir # Add device to IP connection
-# Don't use device before it is added to a connection
+ipcon = IPConnection.new # Create IP connection
+dir = BrickletDistanceIR.new UID, ipcon # Create device object
+
+ipcon.connect HOST, PORT # Connect to brickd
+# Don't use device before ipcon is connected
 
 # Set Period for distance callback to 0.2s (200ms)
 # Note: The callback is only called every 200ms if the 
@@ -27,4 +28,3 @@ end
 
 puts 'Press key to exit'
 $stdin.gets
-ipcon.destroy
