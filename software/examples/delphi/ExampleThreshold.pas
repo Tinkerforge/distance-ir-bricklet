@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     dr: TBrickletDistanceIR;
   public
-    procedure ReachedCB(const distance: word);
+    procedure ReachedCB(sender: TObject; const distance: word);
     procedure Execute;
   end;
 
@@ -25,22 +25,22 @@ var
   e: TExample;
 
 { Callback for distance smaller than 20 cm }
-procedure TExample.ReachedCB(const distance: word);
+procedure TExample.ReachedCB(sender: TObject; const distance: word);
 begin
   WriteLn(Format('Distance is smaller than 20 cm: %f cm', [distance/10.0]));
 end;
 
 procedure TExample.Execute;
 begin
-  { Create IP connection to brickd }
-  ipcon := TIPConnection.Create(HOST, PORT);
+  { Create IP connection }
+  ipcon := TIPConnection.Create();
 
   { Create device object }
-  dr := TBrickletDistanceIR.Create(UID);
+  dr := TBrickletDistanceIR.Create(UID, ipcon);
 
-  { Add device to IP connection }
-  ipcon.AddDevice(dr);
-  { Don't use device before it is added to a connection }
+  { Connect to brickd }
+  ipcon.Connect(HOST, PORT);
+  { Don't use device before ipcon is connected }
 
   { Get threshold callbacks with a debounce time of 1 second (1000ms) }
   dr.SetDebouncePeriod(1000);
@@ -53,7 +53,6 @@ begin
 
   WriteLn('Press key to exit');
   ReadLn;
-  ipcon.Destroy;
 end;
 
 begin
