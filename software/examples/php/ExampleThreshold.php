@@ -16,11 +16,11 @@ function cb_reached($distance)
     echo "Distance is smaller than 20cm: " . $distance / 10.0 . " cm\n";
 }
 
-$ipcon = new IPConnection($host, $port); // Create IP connection to brickd
-$dist = new BrickletDistanceIR($uid); // Create device object
+$ipcon = new IPConnection(); // Create IP connection
+$dist = new BrickletDistanceIR($uid, $ipcon); // Create device object
 
-$ipcon->addDevice($dist); // Add device to IP connection
-// Don't use device before it is added to a connection
+$ipcon->connect($host, $port); // Connect to brickd
+// Don't use device before ipcon is connected
 
 // Get threshold callbacks with a debounce time of 1 second (1000ms)
 $dist->setDebouncePeriod(1000);

@@ -16,11 +16,11 @@ function cb_distance($distance)
     echo "Distance: " . $distance / 10.0 . " cm\n";
 }
 
-$ipcon = new IPConnection($host, $port); // Create IP connection to brickd
-$dist = new BrickletDistanceIR($uid); // Create device object
+$ipcon = new IPConnection(); // Create IP connection
+$dist = new BrickletDistanceIR($uid, $ipcon); // Create device object
 
-$ipcon->addDevice($dist); // Add device to IP connection
-// Don't use device before it is added to a connection
+$ipcon->connect($host, $port); // Connect to brickd
+// Don't use device before ipcon is connected
 
 // Set Period for distance callback to 0.2s (200ms)
 // Note: The callback is only called every 200ms if the 
