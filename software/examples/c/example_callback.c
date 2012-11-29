@@ -9,28 +9,25 @@
 #define UID "XYZ" // Change to your UID
 
 // Callback function for distance callback (parameter has unit mm)
-void cb_distance(uint16_t distance) {
+void cb_distance(uint16_t distance, void *user_data) {
 	printf("Distance: %f cm\n", distance/10.0);
 }
 
 int main() {
-	// Create IP connection to brickd
+	// Create IP connection
 	IPConnection ipcon;
-	if(ipcon_create(&ipcon, HOST, PORT) < 0) {
-		fprintf(stderr, "Could not create connection\n");
-		exit(1);
-	}
+	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist;
-	distance_ir_create(&dist, UID); 
+	DistanceIR dist
+	distance_ir_create(&dist, UID, &ipcon); 
 
-	// Add device to IP connection
-	if(ipcon_add_device(&ipcon, &dist) < 0) {
-		fprintf(stderr, "Could not connect to Bricklet\n");
+	// Connect to brickd
+	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
+		fprintf(stderr, "Could not connect\n");
 		exit(1);
 	}
-	// Don't use device before it is added to a connection
+	// Don't use device before ipcon is connected
 
 	// Set Period for distance callback to 0.2s (200ms)
 	// Note: The callback is only called every 200ms if the 
@@ -40,7 +37,8 @@ int main() {
 	// Register distance callback to function cb_distance
 	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE, 
-	                              cb_distance);
+	                              cb_distance,
+								  NULL);
 
 	printf("Press key to exit\n");
 	getchar();
