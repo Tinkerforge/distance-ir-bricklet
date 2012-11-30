@@ -108,26 +108,26 @@ void destructor(void) {
 	adc_channel_disable(BS->adc_channel);
 }
 
-void get_sampling_point(const ComType com, const GetSamplingPoint *gsp) {
+void get_sampling_point(const ComType com, const GetSamplingPoint *data) {
 	GetSamplingPointReturn gspr;
 
-	if(gsp->position >= LOOKUP_SIZE) {
-		BA->com_return_error(gsp, com, MESSAGE_ERROR_CODE_INVALID_PARAMETER, sizeof(GetSamplingPointReturn));
+	if(data->position >= LOOKUP_SIZE) {
+		BA->com_return_error(data, sizeof(GetSamplingPointReturn), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
 		return;
 	}
 
-	gspr.header        = gsp->header;
+	gspr.header        = data->header;
 	gspr.header.length = sizeof(GetSamplingPointReturn);
-	gspr.distance = lookup[gsp->position];
+	gspr.distance      = lookup[data->position];
 
 	BA->send_blocking_with_timeout(&gspr,
 	                               sizeof(GetSamplingPointReturn),
 	                               com);
 }
 
-void set_sampling_point(const ComType com, const SetSamplingPoint *sm) {
-	if(sm->position >= LOOKUP_SIZE) {
-		BA->com_return_error(sm, com, MESSAGE_ERROR_CODE_INVALID_PARAMETER, sizeof(MessageHeader));
+void set_sampling_point(const ComType com, const SetSamplingPoint *data) {
+	if(data->position >= LOOKUP_SIZE) {
+		BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
 		return;
 	}
 
@@ -137,12 +137,12 @@ void set_sampling_point(const ComType com, const SetSamplingPoint *sm) {
 
     BA->bricklet_select(BS->port - 'a');
     BA->i2c_eeprom_master_write(BA->twid->pTwi,
-                                lookup_start_position + sm->position*2,
-                                (char *)&sm->distance,
+                                lookup_start_position + data->position*2,
+                                (char *)&data->distance,
                                 2);
     BA->bricklet_deselect(BS->port - 'a');
 
-    BA->com_return_setter(com, sm);
+    BA->com_return_setter(com, data);
 }
 
 int32_t analog_value_from_mc(const int32_t value) {
