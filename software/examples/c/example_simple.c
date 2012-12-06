@@ -14,7 +14,7 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist
+	DistanceIR dist;
 	distance_ir_create(&dist, UID, &ipcon); 
 
 	// Connect to brickd

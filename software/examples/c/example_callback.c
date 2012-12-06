@@ -10,6 +10,8 @@
 
 // Callback function for distance callback (parameter has unit mm)
 void cb_distance(uint16_t distance, void *user_data) {
+	(void)user_data; // avoid unused parameter warning
+
 	printf("Distance: %f cm\n", distance/10.0);
 }
 
@@ -19,7 +21,7 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist
+	DistanceIR dist;
 	distance_ir_create(&dist, UID, &ipcon); 
 
 	// Connect to brickd
@@ -38,7 +40,7 @@ int main() {
 	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE, 
 	                              cb_distance,
-								  NULL);
+	                              NULL);
 
 	printf("Press key to exit\n");
 	getchar();

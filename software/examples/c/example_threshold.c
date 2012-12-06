@@ -10,6 +10,8 @@
 
 // Callback for distance smaller than 20cm
 void cb_reached(uint16_t distance, void *user_data) {
+	(void)user_data; // avoid unused parameter warning
+
 	printf("Distance is smaller than 20cm: %f cm\n", distance/10.0);
 }
 
@@ -19,7 +21,7 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist
+	DistanceIR dist;
 	distance_ir_create(&dist, UID, &ipcon); 
 
 	// Connect to brickd
@@ -36,7 +38,7 @@ int main() {
 	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE_REACHED,
 	                              cb_reached,
-								  NULL);
+	                              NULL);
 
 	// Configure threshold for "smaller than 20cm" (unit is mm)
 	distance_ir_set_distance_callback_threshold(&dist, '<', 200, 0);
