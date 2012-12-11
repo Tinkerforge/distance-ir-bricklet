@@ -37,7 +37,7 @@ int main() {
 	// Register threshold reached callback to function cb_reached
 	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE_REACHED,
-	                              cb_reached,
+	                              (void *)cb_reached,
 	                              NULL);
 
 	// Configure threshold for "smaller than 20cm" (unit is mm)

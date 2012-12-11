@@ -39,7 +39,7 @@ int main() {
 	// Register distance callback to function cb_distance
 	distance_ir_register_callback(&dist,
 	                              DISTANCE_IR_CALLBACK_DISTANCE, 
-	                              cb_distance,
+	                              (void *)cb_distance,
 	                              NULL);
 
 	printf("Press key to exit\n");
