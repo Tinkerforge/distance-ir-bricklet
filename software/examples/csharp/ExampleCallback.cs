@@ -7,7 +7,7 @@ class Example
 	private static string UID = "ABC"; // Change to your UID
 
 	// Callback function for distance callback (parameter has unit mm)
-	static void DistanceCB(object sender, int distance)
+	static void DistanceCB(BrickletDistanceIR sender, int distance)
 	{
 		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
 	}

@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     dr: TBrickletDistanceIR;
   public
-    procedure ReachedCB(sender: TObject; const distance: word);
+    procedure ReachedCB(sender: TBrickletDistanceIR; const distance: word);
     procedure Execute;
   end;
 
@@ -25,7 +25,7 @@ var
   e: TExample;
 
 { Callback for distance smaller than 20 cm }
-procedure TExample.ReachedCB(sender: TObject; const distance: word);
+procedure TExample.ReachedCB(sender: TBrickletDistanceIR; const distance: word);
 begin
   WriteLn(Format('Distance is smaller than 20 cm: %f cm', [distance/10.0]));
 end;

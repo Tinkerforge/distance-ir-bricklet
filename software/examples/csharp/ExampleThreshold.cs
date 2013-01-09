@@ -7,7 +7,7 @@ class Example
 	private static string UID = "ABC"; // Change to your UID
 
 	// Callback for distance smaller than 20 cm
-	static void ReachedCB(object sender, int distance)
+	static void ReachedCB(BrickletDistanceIR sender, int distance)
 	{
 		System.Console.WriteLine("Distance is smaller than 20 cm: " + distance/10.0 + " cm");
 	}

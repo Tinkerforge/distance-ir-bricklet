@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     dr: TBrickletDistanceIR;
   public
-    procedure DistanceCB(sender: TObject; const distance: word);
+    procedure DistanceCB(sender: TBrickletDistanceIR; const distance: word);
     procedure Execute;
   end;
 
@@ -25,7 +25,7 @@ var
   e: TExample;
 
 { Callback function for distance callback (parameter has unit mm) }
-procedure TExample.DistanceCB(sender: TObject; const distance: word);
+procedure TExample.DistanceCB(sender: TBrickletDistanceIR; const distance: word);
 begin
   WriteLn(Format('Distance: %f cm', [distance/10.0]));
 end;
