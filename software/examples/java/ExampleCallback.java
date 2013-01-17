@@ -21,7 +21,7 @@ public class ExampleCallback {
 		dir.setDistanceCallbackPeriod(1000);
 
 		// Add and implement distance listener (called if distance changes)
-		dir.addListener(new BrickletDistanceIR.DistanceListener() {
+		dir.addDistanceListener(new BrickletDistanceIR.DistanceListener() {
 			public void distance(int distance) {
 				System.out.println("Distance: " + distance/10.0 + " cm");
 			}

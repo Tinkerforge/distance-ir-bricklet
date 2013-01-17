@@ -23,7 +23,7 @@ public class ExampleThreshold {
 
 		// Add and implement distance reached listener 
 		// (called if distance is smaller than 20 cm)
-		dir.addListener(new BrickletDistanceIR.DistanceReachedListener() {
+		dir.addDistanceReachedListener(new BrickletDistanceIR.DistanceReachedListener() {
 			public void distanceReached(int distance) {
 				System.out.println("Distance is smaller than 20cm: " + distance/10.0 + " cm");
 			}
