@@ -22,3 +22,4 @@ puts "Distance: #{distance} cm"
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

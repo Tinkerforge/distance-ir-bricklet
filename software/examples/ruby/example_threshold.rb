@@ -29,3 +29,4 @@ dir.set_distance_callback_threshold '<', 200, 0
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

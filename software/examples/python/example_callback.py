@@ -28,3 +28,4 @@ if __name__ == "__main__":
     dist.register_callback(dist.CALLBACK_DISTANCE, cb_distance)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
+    ipcon.disconnect()

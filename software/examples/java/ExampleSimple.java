@@ -21,5 +21,6 @@ public class ExampleSimple {
 		System.out.println("Distance: " + distance/10.0 + " cm");
 
 		System.console().readLine("Press key to exit\n");
+		ipcon.disconnect();
 	}
 }
