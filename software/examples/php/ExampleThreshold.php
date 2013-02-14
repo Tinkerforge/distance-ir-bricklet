@@ -22,8 +22,8 @@ $dist = new BrickletDistanceIR($uid, $ipcon); // Create device object
 $ipcon->connect($host, $port); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get threshold callbacks with a debounce time of 1 second (1000ms)
-$dist->setDebouncePeriod(1000);
+// Get threshold callbacks with a debounce time of 10 second (10000ms)
+$dist->setDebouncePeriod(10000);
 
 // Register threshold reached callback to function cb_reached
 $dist->registerCallback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED, 'cb_reached');

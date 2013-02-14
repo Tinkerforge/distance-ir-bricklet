@@ -19,8 +19,8 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get threshold callbacks with a debounce time of 1 second (1000ms)
-    dist.set_debounce_period(1000)
+    # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
+    dist.set_debounce_period(10000)
 
     # Register threshold reached callback to function cb_reached
     dist.register_callback(dist.CALLBACK_DISTANCE_REACHED, cb_reached)

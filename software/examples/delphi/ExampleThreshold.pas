@@ -42,8 +42,8 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get threshold callbacks with a debounce time of 1 second (1000ms) }
-  dr.SetDebouncePeriod(1000);
+  { Get threshold callbacks with a debounce time of 10 second (10000ms) }
+  dr.SetDebouncePeriod(10000);
 
   { Register threshold reached callback to procedure ReachedCB }
   dr.OnDistanceReached := {$ifdef FPC}@{$endif}ReachedCB;
