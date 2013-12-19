@@ -135,15 +135,12 @@ void set_sampling_point(const ComType com, const SetSamplingPoint *data) {
 	uint16_t lookup_start_position = I2C_EEPROM_INTERNAL_ADDRESS_PLUGIN +
 	                                 (uint32_t)lookup - BS->baddr->plugin;
 
-	if(BA->mutex_take(*BA->mutex_twi_bricklet, 0)) {
-		BA->bricklet_select(BS->port - 'a');
-		BA->i2c_eeprom_master_write(BA->twid->pTwi,
-									lookup_start_position + data->position*2,
-									(char *)&data->distance,
-									2);
-		BA->bricklet_deselect(BS->port - 'a');
-		BA->mutex_give(*BA->mutex_twi_bricklet);
-	}
+    BA->bricklet_select(BS->port - 'a');
+    BA->i2c_eeprom_master_write(BA->twid->pTwi,
+                                lookup_start_position + data->position*2,
+                                (char *)&data->distance,
+                                2);
+    BA->bricklet_deselect(BS->port - 'a');
 
     BA->com_return_setter(com, data);
 }
