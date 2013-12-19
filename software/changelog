@@ -3,3 +3,4 @@
 1.1.1: Use moving average instead of simple average
 2.0.0: Support for protocol 2.0
 2.0.1: Add I2C mutex for lookup table write function
+2.0.2: Fix wrong length for GetDebounce packet (through brickletlib)
