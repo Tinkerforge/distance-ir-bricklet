@@ -93,6 +93,8 @@ void invocation(const ComType com, const uint8_t *data) {
 }
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
 	for(uint8_t i = 0; i < NUM_MOVING_AVERAGE; i++) {
 		BC->moving_average[i] = 0;
 	}
