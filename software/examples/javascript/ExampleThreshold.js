@@ -1,12 +1,11 @@
-var IPConnection = require('Tinkerforge/IPConnection');
-var BrickletDistanceIR = require('Tinkerforge/BrickletDistanceIR');
+var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
 var UID = 'hHE';// Change to your UID
 
-var ipcon = new IPConnection();// Create IP connection
-var dist = new BrickletDistanceIR(UID, ipcon);// Create device object
+var ipcon = new Tinkerforge.IPConnection();// Create IP connection
+var dist = new Tinkerforge.BrickletDistanceIR(UID, ipcon);// Create device object
 
 ipcon.connect(HOST, PORT,
     function(error) {
@@ -15,7 +14,7 @@ ipcon.connect(HOST, PORT,
 );// Connect to brickd
 
 // Don't use device before ipcon is connected
-ipcon.on(IPConnection.CALLBACK_CONNECTED,
+ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         dist.setDebouncePeriod(10000);
@@ -25,7 +24,7 @@ ipcon.on(IPConnection.CALLBACK_CONNECTED,
 );
 
 //Register threshold reached callback
-dist.on(BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
+dist.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
     //Callback for distance smaller than 20cm
     function(distance) {
         console.log('Distance is smaller than 20cm: '+distance/10+' cm');
