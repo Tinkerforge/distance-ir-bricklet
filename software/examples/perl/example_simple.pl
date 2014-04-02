@@ -14,11 +14,11 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current distance (unit is mm)
-my $distance = $dist->get_distance();
+my $distance = $dist->get_distance()/10.0;
 
-print "\nDistance: ".$distance/10.0." cm\n";
+print "Distance: $distance cm\n";
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 

@@ -14,8 +14,10 @@ my $dist = Tinkerforge::BrickletDistanceIR->new(&UID, $ipcon); # Create device o
 sub cb_reached
 {
     my ($distance) = @_;
-    print "\nDistance is smaller than 20cm: ".$distance/10.0." cm\n";
+
+    print "Distance is smaller than 20cm: ".$distance/10.0." cm\n";
 }
+
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
@@ -28,7 +30,7 @@ $dist->register_callback($dist->CALLBACK_DISTANCE_REACHED, 'cb_reached');
 # Configure threshold for "smaller than 20cm" (unit is mm)
 $dist->set_distance_callback_threshold('<', 200, 0);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
