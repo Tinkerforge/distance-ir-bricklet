@@ -15,16 +15,16 @@ function octave_example_threshold
     dist.setDebouncePeriod(10000);
 
     % Register threshold reached callback to function cb_reached
-    dist.addDistanceReachedListener("cb_reached");
+    dist.addDistanceReachedCallback(@cb_reached);
 
     % Configure threshold for "smaller than 20cm" (unit is mm)
     dist.setDistanceCallbackThreshold("<", 200, 0);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback for distance smaller than 20cm
-function cb_reached(distance)
-    fprintf("Distance is smaller than 20cm: %g cm\n", distance/10),
+function cb_reached(e)
+    fprintf("Distance is smaller than 20cm: %g cm\n", e.distance/10.0),
 end

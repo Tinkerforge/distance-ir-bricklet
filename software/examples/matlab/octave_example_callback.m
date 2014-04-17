@@ -17,13 +17,13 @@ function octave_example_callback
     dist.setDistanceCallbackPeriod(200);
 
     % Register distance callback to function cb_distance
-    dist.addDistanceListener("cb_distance");
+    dist.addDistanceCallback(@cb_distance);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
 
 % Callback function for distance callback (parameter has unit mm)
-function cb_distance(distance)
-    fprintf("Distance: %g cm\n", distance/10);
+function cb_distance(e)
+    fprintf("Distance: %g cm\n", e.distance/10.0);
 end

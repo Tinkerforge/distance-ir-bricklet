@@ -13,11 +13,8 @@ function octave_example_simple
 
     % Get current distance (unit is mm)
     distance = dist.getDistance();
+    fprintf("Distance: %g cm\n", distance/10.0);
 
-    fprintf("Distance: %g cm\n", distance/10);
-
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end
-
-
