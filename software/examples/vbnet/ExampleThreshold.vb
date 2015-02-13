@@ -27,7 +27,7 @@ Module ExampleThreshold
         di.SetDistanceCallbackThreshold("<"C, 200, 0)
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
