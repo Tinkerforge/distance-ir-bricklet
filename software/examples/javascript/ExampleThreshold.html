@@ -51,8 +51,7 @@
                 dist.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
                     // Callback for distance smaller than 20cm
                     function(distance) {
-                        textArea.value += 'Distance is smaller than 20cm: '+distance/10+' cm';
-                        textArea.value += '\n';
+                        textArea.value += 'Distance is smaller than 20cm: '+distance/10+' cm\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

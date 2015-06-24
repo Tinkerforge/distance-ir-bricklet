@@ -51,8 +51,7 @@
                 dist.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE,
                     // Callback function for distance callback (parameter has unit mm)
                     function(distance) {
-                        textArea.value += 'Distance: '+distance/10+' cm';
-                        textArea.value += '\n';
+                        textArea.value += 'Distance: '+distance/10+' cm\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
