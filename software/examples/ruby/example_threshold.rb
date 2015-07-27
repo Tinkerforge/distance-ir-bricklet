@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = '6Vw' # Change to your UID
+UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
 dir = BrickletDistanceIR.new UID, ipcon # Create device object
@@ -19,13 +19,13 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 dir.set_debounce_period 10000
 
-# Register threshold reached callback for distance smaller than 20cm
+# Register threshold reached callback for distance smaller than 30 cm (parameter has unit mm)
 dir.register_callback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED) do |distance|
-  puts "Distance is smaller than 20cm: #{distance/10.0} cm"
+  puts "Distance: #{distance/10.0} cm"
 end
 
-# Configure threshold for "smaller than 20cm" (unit is mm)
-dir.set_distance_callback_threshold '<', 200, 0
+# Configure threshold for "smaller than 30 cm" (unit is mm)
+dir.set_distance_callback_threshold '<', 30*10, 0
 
 puts 'Press key to exit'
 $stdin.gets

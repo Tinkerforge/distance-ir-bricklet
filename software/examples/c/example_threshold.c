@@ -7,11 +7,11 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback for distance smaller than 20cm
-void cb_reached(uint16_t distance, void *user_data) {
+// Callback function for distance smaller than 30 cm (parameter has unit mm)
+void cb_distance_reached(uint16_t distance, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("Distance is smaller than 20cm: %f cm\n", distance/10.0);
+	printf("Distance: %f cm\n", distance/10.0);
 }
 
 int main() {
@@ -20,8 +20,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist;
-	distance_ir_create(&dist, UID, &ipcon); 
+	DistanceIR dir;
+	distance_ir_create(&dir, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -30,17 +30,17 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get threshold callbacks with a debounce time of 1 second (1000ms)
-	distance_ir_set_debounce_period(&dist, 1000);
+	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
+	distance_ir_set_debounce_period(&dir, 10000);
 
-	// Register threshold reached callback to function cb_reached
-	distance_ir_register_callback(&dist,
+	// Register threshold reached callback to function cb_distance_reached
+	distance_ir_register_callback(&dir,
 	                              DISTANCE_IR_CALLBACK_DISTANCE_REACHED,
-	                              (void *)cb_reached,
+	                              (void *)cb_distance_reached,
 	                              NULL);
 
-	// Configure threshold for "smaller than 20cm" (unit is mm)
-	distance_ir_set_distance_callback_threshold(&dist, '<', 200, 0);
+	// Configure threshold for "smaller than 30 cm" (unit is mm)
+	distance_ir_set_distance_callback_threshold(&dir, '<', 30*10, 0);
 
 	printf("Press key to exit\n");
 	getchar();

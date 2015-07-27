@@ -20,8 +20,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist;
-	distance_ir_create(&dist, UID, &ipcon); 
+	DistanceIR dir;
+	distance_ir_create(&dir, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -30,14 +30,14 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set Period for distance callback to 0.2s (200ms)
-	// Note: The callback is only called every 200ms if the 
-	//       distance has changed since the last call!
-	distance_ir_set_distance_callback_period(&dist, 200);
+	// Set period for distance callback to 0.2s (200ms)
+	// Note: The distance callback is only called every 0.2 seconds
+	//       if the distance has changed since the last call!
+	distance_ir_set_distance_callback_period(&dir, 200);
 
 	// Register distance callback to function cb_distance
-	distance_ir_register_callback(&dist,
-	                              DISTANCE_IR_CALLBACK_DISTANCE, 
+	distance_ir_register_callback(&dir,
+	                              DISTANCE_IR_CALLBACK_DISTANCE,
 	                              (void *)cb_distance,
 	                              NULL);
 

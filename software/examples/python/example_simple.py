@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 
 HOST = "localhost"
 PORT = 4223
@@ -10,14 +10,13 @@ from tinkerforge.bricklet_distance_ir import DistanceIR
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    dist = DistanceIR(UID, ipcon) # Create device object
+    dir = DistanceIR(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
     # Get current distance (unit is mm)
-    distance = dist.get_distance()
-
+    distance = dir.get_distance()
     print('Distance: ' + str(distance/10.0) + ' cm')
 
     raw_input('Press key to exit\n') # Use input() in Python 3

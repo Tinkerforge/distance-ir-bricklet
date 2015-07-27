@@ -1,11 +1,11 @@
-import com.tinkerforge.BrickletDistanceIR;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletDistanceIR;
 
 public class ExampleCallback {
 	private static final String HOST = "localhost";
 	private static final int PORT = 4223;
-	private static final String UID = "ABC"; // Change to your UID
-	
+	private static final String UID = "XYZ"; // Change to your UID
+
 	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
 	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
@@ -15,12 +15,12 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Set Period for distance callback to 1s (1000ms)
-		// Note: The distance callback is only called every second if the 
-		//       distance has changed since the last call!
-		dir.setDistanceCallbackPeriod(1000);
+		// Set period for distance callback to 0.2s (200ms)
+		// Note: The distance callback is only called every 0.2 seconds
+		//       if the distance has changed since the last call!
+		dir.setDistanceCallbackPeriod(200);
 
-		// Add and implement distance listener (called if distance changes)
+		// Add distance listener (parameter has unit mm)
 		dir.addDistanceListener(new BrickletDistanceIR.DistanceListener() {
 			public void distance(int distance) {
 				System.out.println("Distance: " + distance/10.0 + " cm");

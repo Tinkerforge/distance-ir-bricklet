@@ -13,8 +13,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	DistanceIR dist;
-	distance_ir_create(&dist, UID, &ipcon); 
+	DistanceIR dir;
+	distance_ir_create(&dir, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -25,8 +25,8 @@ int main() {
 
 	// Get current distance (unit is mm)
 	uint16_t distance;
-	if(distance_ir_get_distance(&dist, &distance) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
+	if(distance_ir_get_distance(&dir, &distance) < 0) {
+		fprintf(stderr, "Could not get distance, probably timeout\n");
 		exit(1);
 	}
 

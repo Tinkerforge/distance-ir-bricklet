@@ -4,15 +4,15 @@ class Example
 {
 	private static string HOST = "localhost";
 	private static int PORT = 4223;
-	private static string UID = "ABC"; // Change to your UID
+	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback for distance smaller than 20 cm
-	static void ReachedCB(BrickletDistanceIR sender, int distance)
+	// Callback function for distance smaller than 30 cm (parameter has unit mm)
+	static void DistanceReachedCB(BrickletDistanceIR sender, int distance)
 	{
-		System.Console.WriteLine("Distance is smaller than 20 cm: " + distance/10.0 + " cm");
+		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
 	}
 
-	static void Main() 
+	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletDistanceIR dir = new BrickletDistanceIR(UID, ipcon); // Create device object
@@ -23,11 +23,11 @@ class Example
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		dir.SetDebouncePeriod(10000);
 
-		// Register threshold reached callback to function ReachedCB
-		dir.DistanceReached += ReachedCB;
+		// Register threshold reached callback to function DistanceReachedCB
+		dir.DistanceReached += DistanceReachedCB;
 
-		// Configure threshold for "smaller than 20 cm" (unit is mm)
-		dir.SetDistanceCallbackThreshold('<', 200, 0);
+		// Configure threshold for "smaller than 30 cm" (unit is mm)
+		dir.SetDistanceCallbackThreshold('<', 30*10, 0);
 
 		System.Console.WriteLine("Press enter to exit");
 		System.Console.ReadLine();

@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = '6Vw' # Change to your UID
+UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
 dir = BrickletDistanceIR.new UID, ipcon # Create device object
@@ -17,8 +17,8 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
 # Get current distance (unit is mm)
-distance = dir.get_distance / 10.0
-puts "Distance: #{distance} cm"
+distance = dir.get_distance
+puts "Distance: #{distance/10.0} cm"
 
 puts 'Press key to exit'
 $stdin.gets

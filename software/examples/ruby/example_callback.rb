@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = '6Vw' # Change to your UID
+UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
 dir = BrickletDistanceIR.new UID, ipcon # Create device object
@@ -16,9 +16,9 @@ dir = BrickletDistanceIR.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Set Period for distance callback to 0.2s (200ms)
-# Note: The callback is only called every 200ms if the 
-#       distance has changed since the last call!
+# Set period for distance callback to 0.2s (200ms)
+# Note: The distance callback is only called every 0.2 seconds
+#       if the distance has changed since the last call!
 dir.set_distance_callback_period 200
 
 # Register distance callback (parameter has unit mm)
