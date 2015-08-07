@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_distance_ir import DistanceIR
+from tinkerforge.bricklet_distance_ir import BrickletDistanceIR
 
 # Callback function for distance callback (parameter has unit mm)
 def cb_distance(distance):
@@ -14,7 +14,7 @@ def cb_distance(distance):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    dir = DistanceIR(UID, ipcon) # Create device object
+    dir = BrickletDistanceIR(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
