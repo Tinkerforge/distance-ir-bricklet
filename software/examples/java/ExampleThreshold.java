@@ -19,7 +19,7 @@ public class ExampleThreshold {
 		dir.setDebouncePeriod(10000);
 
 		// Configure threshold for "smaller than 30 cm" (unit is mm)
-		dir.setDistanceCallbackThreshold('<', (short)(30*10), (short)0);
+		dir.setDistanceCallbackThreshold('<', 30*10, 0);
 
 		// Add threshold reached listener for distance smaller than 30 cm (parameter has unit mm)
 		dir.addDistanceReachedListener(new BrickletDistanceIR.DistanceReachedListener() {
