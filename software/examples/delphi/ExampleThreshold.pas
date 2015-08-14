@@ -10,24 +10,24 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    dr: TBrickletDistanceIR;
+    dir: TBrickletDistanceIR;
   public
-    procedure ReachedCB(sender: TBrickletDistanceIR; const distance: word);
+    procedure DistanceReachedCB(sender: TBrickletDistanceIR; const distance: word);
     procedure Execute;
   end;
 
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = '6Vw'; { Change to your UID }
+  UID = 'XYZ'; { Change to your UID }
 
 var
   e: TExample;
 
-{ Callback for distance smaller than 20 cm }
-procedure TExample.ReachedCB(sender: TBrickletDistanceIR; const distance: word);
+{ Callback procedure for distance smaller than 30 cm (parameter has unit mm) }
+procedure TExample.DistanceReachedCB(sender: TBrickletDistanceIR; const distance: word);
 begin
-  WriteLn(Format('Distance is smaller than 20 cm: %f cm', [distance/10.0]));
+  WriteLn(Format('Distance: %f cm', [distance/10.0]));
 end;
 
 procedure TExample.Execute;
@@ -36,20 +36,20 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  dr := TBrickletDistanceIR.Create(UID, ipcon);
+  dir := TBrickletDistanceIR.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get threshold callbacks with a debounce time of 10 second (10000ms) }
-  dr.SetDebouncePeriod(10000);
+  { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
+  dir.SetDebouncePeriod(10000);
 
-  { Register threshold reached callback to procedure ReachedCB }
-  dr.OnDistanceReached := {$ifdef FPC}@{$endif}ReachedCB;
+  { Register threshold reached callback to procedure DistanceReachedCB }
+  dir.OnDistanceReached := {$ifdef FPC}@{$endif}DistanceReachedCB;
 
-  { Configure threshold for "smaller than 20cm" (unit is mm) }
-  dr.SetDistanceCallbackThreshold('<', 20*10, 0);
+  { Configure threshold for "smaller than 30 cm" (unit is mm) }
+  dir.SetDistanceCallbackThreshold('<', 30*10, 0);
 
   WriteLn('Press key to exit');
   ReadLn;

@@ -10,7 +10,7 @@ type
   TExample = class
   private
     ipcon: TIPConnection;
-    dr: TBrickletDistanceIR;
+    dir: TBrickletDistanceIR;
   public
     procedure Execute;
   end;
@@ -18,7 +18,7 @@ type
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = '6Vw'; { Change to your UID }
+  UID = 'XYZ'; { Change to your UID }
 
 var
   e: TExample;
@@ -30,14 +30,14 @@ begin
   ipcon := TIPConnection.Create;
 
   { Create device object }
-  dr := TBrickletDistanceIR.Create(UID, ipcon);
+  dir := TBrickletDistanceIR.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
   { Get current distance (unit is mm) }
-  distance := dr.GetDistance;
+  distance := dir.GetDistance;
   WriteLn(Format('Distance: %f cm', [distance/10.0]));
 
   WriteLn('Press key to exit');
