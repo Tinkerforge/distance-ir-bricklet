@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback function for distance smaller than 30 cm (parameter has unit mm)
+// Callback function for distance reached callback (parameter has unit mm)
 void cb_distance_reached(uint16_t distance, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -33,13 +33,13 @@ int main(void) {
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	distance_ir_set_debounce_period(&dir, 10000);
 
-	// Register threshold reached callback to function cb_distance_reached
+	// Register distance reached callback to function cb_distance_reached
 	distance_ir_register_callback(&dir,
 	                              DISTANCE_IR_CALLBACK_DISTANCE_REACHED,
 	                              (void *)cb_distance_reached,
 	                              NULL);
 
-	// Configure threshold for "smaller than 30 cm" (unit is mm)
+	// Configure threshold for distance "smaller than 30 cm" (unit is mm)
 	distance_ir_set_distance_callback_threshold(&dir, '<', 30*10, 0);
 
 	printf("Press key to exit\n");

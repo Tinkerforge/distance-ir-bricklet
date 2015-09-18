@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # Get current distance (unit is mm)
     distance = dir.get_distance()
-    print('Distance: ' + str(distance/10.0) + ' cm')
+    print("Distance: " + str(distance/10.0) + " cm")
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

@@ -30,16 +30,16 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set period for distance callback to 0.2s (200ms)
-	// Note: The distance callback is only called every 0.2 seconds
-	//       if the distance has changed since the last call!
-	distance_ir_set_distance_callback_period(&dir, 200);
-
 	// Register distance callback to function cb_distance
 	distance_ir_register_callback(&dir,
 	                              DISTANCE_IR_CALLBACK_DISTANCE,
 	                              (void *)cb_distance,
 	                              NULL);
+
+	// Set period for distance callback to 0.2s (200ms)
+	// Note: The distance callback is only called every 0.2 seconds
+	//       if the distance has changed since the last call!
+	distance_ir_set_distance_callback_period(&dir, 200);
 
 	printf("Press key to exit\n");
 	getchar();

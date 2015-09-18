@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for distance smaller than 30 cm (parameter has unit mm) }
+{ Callback procedure for distance reached callback (parameter has unit mm) }
 procedure TExample.DistanceReachedCB(sender: TBrickletDistanceIR; const distance: word);
 begin
   WriteLn(Format('Distance: %f cm', [distance/10.0]));
@@ -45,10 +45,10 @@ begin
   { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
   dir.SetDebouncePeriod(10000);
 
-  { Register threshold reached callback to procedure DistanceReachedCB }
+  { Register distance reached callback to procedure DistanceReachedCB }
   dir.OnDistanceReached := {$ifdef FPC}@{$endif}DistanceReachedCB;
 
-  { Configure threshold for "smaller than 30 cm" (unit is mm) }
+  { Configure threshold for distance "smaller than 30 cm" (unit is mm) }
   dir.SetDistanceCallbackThreshold('<', 30*10, 0);
 
   WriteLn('Press key to exit');

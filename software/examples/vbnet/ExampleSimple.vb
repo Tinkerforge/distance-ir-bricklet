@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleSimple
@@ -14,10 +15,10 @@ Module ExampleSimple
 
         ' Get current distance (unit is mm)
         Dim distance As Integer = dir.GetDistance()
-        System.Console.WriteLine("Distance: " + (distance/10.0).ToString() + " cm")
+        Console.WriteLine("Distance: " + (distance/10.0).ToString() + " cm")
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

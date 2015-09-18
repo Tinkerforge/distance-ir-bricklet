@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -6,10 +7,10 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback function for distance smaller than 30 cm (parameter has unit mm)
+	// Callback function for distance reached callback (parameter has unit mm)
 	static void DistanceReachedCB(BrickletDistanceIR sender, int distance)
 	{
-		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
+		Console.WriteLine("Distance: " + distance/10.0 + " cm");
 	}
 
 	static void Main()
@@ -23,14 +24,14 @@ class Example
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		dir.SetDebouncePeriod(10000);
 
-		// Register threshold reached callback to function DistanceReachedCB
+		// Register distance reached callback to function DistanceReachedCB
 		dir.DistanceReached += DistanceReachedCB;
 
-		// Configure threshold for "smaller than 30 cm" (unit is mm)
+		// Configure threshold for distance "smaller than 30 cm" (unit is mm)
 		dir.SetDistanceCallbackThreshold('<', 30*10, 0);
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

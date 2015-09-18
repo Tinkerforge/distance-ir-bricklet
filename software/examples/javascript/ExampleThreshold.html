@@ -31,27 +31,29 @@
                     ipcon.disconnect();
                 }
                 ipcon = new Tinkerforge.IPConnection(); // Create IP connection
-                var dist = new Tinkerforge.BrickletDistanceIR(UID, ipcon); // Create device object
+                var dir = new Tinkerforge.BrickletDistanceIR(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
+                    function (connectReason) {
                         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-                        dist.setDebouncePeriod(10000);
-                        // Configure threshold for "smaller than 20cm" (unit is mm)
-                        dist.setDistanceCallbackThreshold('<', 200, 0);
+                        dir.setDebouncePeriod(10000);
+
+                        // Configure threshold for distance "smaller than 30 cm" (unit is mm)
+                        dir.setDistanceCallbackThreshold('<', 30*10, 0);
                     }
                 );
-                // Register threshold reached callback
-                dist.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
-                    // Callback for distance smaller than 20cm
-                    function(distance) {
-                        textArea.value += 'Distance is smaller than 20cm: '+distance/10+' cm\n';
+
+                // Register distance reached callback
+                dir.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
+                    // Callback function for distance reached callback (parameter has unit mm)
+                    function (distance) {
+                        textArea.value += 'Distance: ' + distance/10.0 + ' cm\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );

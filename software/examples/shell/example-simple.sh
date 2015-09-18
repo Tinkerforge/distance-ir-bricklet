@@ -1,8 +1,7 @@
 #!/bin/sh
-# connects to localhost:4223 by default, use --host and --port to change it
+# Connects to localhost:4223 by default, use --host and --port to change this
 
-# change to your UID
-uid=XYZ
+uid=XYZ # Change to your UID
 
-# get current distance (unit is mm)
+# Get current distance (unit is mm)
 tinkerforge call distance-ir-bricklet $uid get-distance

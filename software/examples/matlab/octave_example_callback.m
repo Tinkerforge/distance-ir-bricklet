@@ -1,25 +1,25 @@
 function octave_example_callback()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
-    UID = "hJw"; % Change to your UID
+    UID = "XYZ"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
-    dist = java_new("com.tinkerforge.BrickletDistanceIR", UID, ipcon); % Create device object
+    dir = java_new("com.tinkerforge.BrickletDistanceIR", UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
-    % Don"t use device before ipcon is connected
-
-    % Set Period for distance callback to 0.2s (200ms)
-    % Note: The callback is only called every 200ms if the 
-    %       distance has changed since the last call!
-    dist.setDistanceCallbackPeriod(200);
+    % Don't use device before ipcon is connected
 
     % Register distance callback to function cb_distance
-    dist.addDistanceCallback(@cb_distance);
+    dir.addDistanceCallback(@cb_distance);
 
-    input("Press any key to exit...\n", "s");
+    % Set period for distance callback to 0.2s (200ms)
+    % Note: The distance callback is only called every 0.2 seconds
+    %       if the distance has changed since the last call!
+    dir.setDistanceCallbackPeriod(200);
+
+    input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 

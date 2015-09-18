@@ -10,7 +10,7 @@ from tinkerforge.bricklet_distance_ir import BrickletDistanceIR
 
 # Callback function for distance callback (parameter has unit mm)
 def cb_distance(distance):
-    print('Distance: ' + str(distance/10.0) + ' cm')
+    print("Distance: " + str(distance/10.0) + " cm")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -19,13 +19,13 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
+    # Register distance callback to function cb_distance
+    dir.register_callback(dir.CALLBACK_DISTANCE, cb_distance)
+
     # Set period for distance callback to 0.2s (200ms)
     # Note: The distance callback is only called every 0.2 seconds
     #       if the distance has changed since the last call!
     dir.set_distance_callback_period(200)
 
-    # Register distance callback to function cb_distance
-    dir.register_callback(dir.CALLBACK_DISTANCE, cb_distance)
-
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

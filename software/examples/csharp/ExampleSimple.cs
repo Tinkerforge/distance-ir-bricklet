@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -16,10 +17,10 @@ class Example
 
 		// Get current distance (unit is mm)
 		int distance = dir.GetDistance();
-		System.Console.WriteLine("Distance: " + distance/10.0 + " cm");
+		Console.WriteLine("Distance: " + distance/10.0 + " cm");
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

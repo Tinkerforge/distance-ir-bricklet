@@ -4,23 +4,23 @@ function matlab_example_callback()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'hJw'; % Change to your UID
-    
+    UID = 'XYZ'; % Change to your UID
+
     ipcon = IPConnection(); % Create IP connection
-    dist = BrickletDistanceIR(UID, ipcon); % Create device object
+    dir = BrickletDistanceIR(UID, ipcon); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Set Period for distance callback to 0.2s (200ms)
-    % Note: The callback is only called every 200ms if the 
-    %       distance has changed since the last call!
-    dist.setDistanceCallbackPeriod(200);
-
     % Register distance callback to function cb_distance
-    set(dist, 'DistanceCallback', @(h, e) cb_distance(e));
+    set(dir, 'DistanceCallback', @(h, e) cb_distance(e));
 
-    input('Press any key to exit...\n', 's');
+    % Set period for distance callback to 0.2s (200ms)
+    % Note: The distance callback is only called every 0.2 seconds
+    %       if the distance has changed since the last call!
+    dir.setDistanceCallbackPeriod(200);
+
+    input('Press key to exit\n', 's');
     ipcon.disconnect();
 end
 
