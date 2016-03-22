@@ -29,6 +29,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:distir-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -207,7 +208,7 @@ F 1 "S3B-PH-SM4" V 8450 3400 40  0000 C CNN
 F 2 "S3B-PH-SM4" H 8400 3400 60  0001 C CNN
 F 3 "" H 8400 3400 60  0001 C CNN
 	1    8400 3400
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L DRILL U3
