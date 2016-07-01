@@ -4,7 +4,7 @@ Imports Tinkerforge
 Module ExampleThreshold
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your Distance IR Bricklet
 
     ' Callback subroutine for distance reached callback (parameter has unit mm)
     Sub DistanceReachedCB(ByVal sender As BrickletDistanceIR, ByVal distance As Integer)

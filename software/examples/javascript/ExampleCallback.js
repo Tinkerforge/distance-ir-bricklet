@@ -2,7 +2,7 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'XYZ'; // Change to your UID
+var UID = 'XYZ'; // Change XYZ to the UID of your Distance IR Bricklet
 
 var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
 var dir = new Tinkerforge.BrickletDistanceIR(UID, ipcon); // Create device object

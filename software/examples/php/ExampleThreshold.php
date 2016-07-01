@@ -8,7 +8,7 @@ use Tinkerforge\BrickletDistanceIR;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your Distance IR Bricklet
 
 // Callback function for distance reached callback (parameter has unit mm)
 function cb_distanceReached($distance)
@@ -26,7 +26,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 $dir->setDebouncePeriod(10000);
 
 // Register distance reached callback to function cb_distanceReached
-$dir->registerCallback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED, 'cb_distanceReached');
+$dir->registerCallback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED,
+                       'cb_distanceReached');
 
 // Configure threshold for distance "smaller than 30 cm" (unit is mm)
 $dir->setDistanceCallbackThreshold('<', 30*10, 0);
