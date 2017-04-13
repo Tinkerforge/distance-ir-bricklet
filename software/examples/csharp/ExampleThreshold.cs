@@ -25,7 +25,7 @@ class Example
 		dir.SetDebouncePeriod(10000);
 
 		// Register distance reached callback to function DistanceReachedCB
-		dir.DistanceReached += DistanceReachedCB;
+		dir.DistanceReachedCallback += DistanceReachedCB;
 
 		// Configure threshold for distance "smaller than 30 cm" (unit is mm)
 		dir.SetDistanceCallbackThreshold('<', 30*10, 0);
