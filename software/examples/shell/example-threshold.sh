@@ -10,7 +10,7 @@ tinkerforge call distance-ir-bricklet $uid set-debounce-period 10000
 tinkerforge dispatch distance-ir-bricklet $uid distance-reached &
 
 # Configure threshold for distance "smaller than 30 cm" (unit is mm)
-tinkerforge call distance-ir-bricklet $uid set-distance-callback-threshold smaller 300 0
+tinkerforge call distance-ir-bricklet $uid set-distance-callback-threshold threshold-option-smaller 300 0
 
 echo "Press key to exit"; read dummy
 
