@@ -16,7 +16,7 @@ dir@SetDebouncePeriod[10000]
 (*Callback function for distance reached callback (parameter has unit mm)*)
 DistanceReachedCB[sender_,distance_]:=
  Print["Distance: "<>ToString[N[Quantity[distance,"cm/10"]]]]
-AddEventHandler[dir@DistanceReached,DistanceReachedCB]
+AddEventHandler[dir@DistanceReachedCallback,DistanceReachedCB]
 
 (*Configure threshold for distance "smaller than 30 cm" (unit is mm)*)
 option=Tinkerforge`BrickletDistanceIR`THRESHOLDUOPTIONUSMALLER

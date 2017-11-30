@@ -19,7 +19,7 @@ Module ExampleCallback
         ' Don't use device before ipcon is connected
 
         ' Register distance callback to subroutine DistanceCB
-        AddHandler dir.Distance, AddressOf DistanceCB
+        AddHandler dir.DistanceCallback, AddressOf DistanceCB
 
         ' Set period for distance callback to 0.2s (200ms)
         ' Note: The distance callback is only called every 0.2 seconds

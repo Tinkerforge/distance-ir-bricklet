@@ -22,7 +22,7 @@ Module ExampleThreshold
         dir.SetDebouncePeriod(10000)
 
         ' Register distance reached callback to subroutine DistanceReachedCB
-        AddHandler dir.DistanceReached, AddressOf DistanceReachedCB
+        AddHandler dir.DistanceReachedCallback, AddressOf DistanceReachedCB
 
         ' Configure threshold for distance "smaller than 30 cm" (unit is mm)
         dir.SetDistanceCallbackThreshold("<"C, 30*10, 0)
