@@ -23,7 +23,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current distance (unit is mm)
+	// Get current distance
 	uint16_t distance;
 	if(distance_ir_get_distance(&dir, &distance) < 0) {
 		fprintf(stderr, "Could not get distance, probably timeout\n");

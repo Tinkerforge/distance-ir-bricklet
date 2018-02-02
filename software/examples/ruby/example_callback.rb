@@ -16,7 +16,7 @@ dir = BrickletDistanceIR.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Register distance callback (parameter has unit mm)
+# Register distance callback
 dir.register_callback(BrickletDistanceIR::CALLBACK_DISTANCE) do |distance|
   puts "Distance: #{distance/10.0} cm"
 end

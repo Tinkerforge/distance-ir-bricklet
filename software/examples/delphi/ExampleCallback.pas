@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for distance callback (parameter has unit mm) }
+{ Callback procedure for distance callback }
 procedure TExample.DistanceCB(sender: TBrickletDistanceIR; const distance: word);
 begin
   WriteLn(Format('Distance: %f cm', [distance/10.0]));

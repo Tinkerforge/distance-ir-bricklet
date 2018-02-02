@@ -3,7 +3,7 @@
 
 uid=XYZ # Change XYZ to the UID of your Distance IR Bricklet
 
-# Handle incoming distance callbacks (parameter has unit mm)
+# Handle incoming distance callbacks
 tinkerforge dispatch distance-ir-bricklet $uid distance &
 
 # Set period for distance callback to 0.2s (200ms)

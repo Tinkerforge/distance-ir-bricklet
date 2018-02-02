@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 dir=NETNew["Tinkerforge.BrickletDistanceIR",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Get current distance (unit is mm)*)
+(*Get current distance*)
 Print["Distance: "<>ToString[N[Quantity[dir@GetDistance[],"cm/10"]]]]
 
 (*Clean up*)

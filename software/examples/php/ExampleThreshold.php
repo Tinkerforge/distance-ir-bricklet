@@ -10,7 +10,7 @@ const HOST = 'localhost';
 const PORT = 4223;
 const UID = 'XYZ'; // Change XYZ to the UID of your Distance IR Bricklet
 
-// Callback function for distance reached callback (parameter has unit mm)
+// Callback function for distance reached callback
 function cb_distanceReached($distance)
 {
     echo "Distance: " . $distance/10.0 . " cm\n";
@@ -29,7 +29,7 @@ $dir->setDebouncePeriod(10000);
 $dir->registerCallback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED,
                        'cb_distanceReached');
 
-// Configure threshold for distance "smaller than 30 cm" (unit is mm)
+// Configure threshold for distance "smaller than 30 cm"
 $dir->setDistanceCallbackThreshold('<', 30*10, 0);
 
 echo "Press ctrl+c to exit\n";

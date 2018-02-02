@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your Distance IR Bricklet
 
-	// Callback function for distance callback (parameter has unit mm)
+	// Callback function for distance callback
 	static void DistanceCB(BrickletDistanceIR sender, int distance)
 	{
 		Console.WriteLine("Distance: " + distance/10.0 + " cm");

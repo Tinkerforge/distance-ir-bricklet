@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Distance IR Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_distance_ir import BrickletDistanceIR
 
-# Callback function for distance callback (parameter has unit mm)
+# Callback function for distance callback
 def cb_distance(distance):
     print("Distance: " + str(distance/10.0) + " cm")
 

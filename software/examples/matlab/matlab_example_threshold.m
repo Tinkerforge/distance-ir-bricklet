@@ -18,14 +18,14 @@ function matlab_example_threshold()
     % Register distance reached callback to function cb_distance_reached
     set(dir, 'DistanceReachedCallback', @(h, e) cb_distance_reached(e));
 
-    % Configure threshold for distance "smaller than 30 cm" (unit is mm)
+    % Configure threshold for distance "smaller than 30 cm"
     dir.setDistanceCallbackThreshold('<', 30*10, 0);
 
     input('Press key to exit\n', 's');
     ipcon.disconnect();
 end
 
-% Callback function for distance reached callback (parameter has unit mm)
+% Callback function for distance reached callback
 function cb_distance_reached(e)
     fprintf('Distance: %g cm\n', e.distance/10.0);
 end

@@ -16,7 +16,7 @@ $dir = new BrickletDistanceIR(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get current distance (unit is mm)
+// Get current distance
 $distance = $dir->getDistance();
 echo "Distance: " . $distance/10.0 . " cm\n";
 

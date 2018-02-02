@@ -20,14 +20,14 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		dir.setDebouncePeriod(10000);
 
-		// Add distance reached listener (parameter has unit mm)
+		// Add distance reached listener
 		dir.addDistanceReachedListener(new BrickletDistanceIR.DistanceReachedListener() {
 			public void distanceReached(int distance) {
 				System.out.println("Distance: " + distance/10.0 + " cm");
 			}
 		});
 
-		// Configure threshold for distance "smaller than 30 cm" (unit is mm)
+		// Configure threshold for distance "smaller than 30 cm"
 		dir.setDistanceCallbackThreshold('<', 30*10, 0);
 
 		System.out.println("Press key to exit"); System.in.read();

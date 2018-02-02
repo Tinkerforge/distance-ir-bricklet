@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Distance IR Bricklet
 
-// Callback function for distance reached callback (parameter has unit mm)
+// Callback function for distance reached callback
 void cb_distance_reached(uint16_t distance, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -39,7 +39,7 @@ int main(void) {
 	                              (void *)cb_distance_reached,
 	                              NULL);
 
-	// Configure threshold for distance "smaller than 30 cm" (unit is mm)
+	// Configure threshold for distance "smaller than 30 cm"
 	distance_ir_set_distance_callback_threshold(&dir, '<', 30*10, 0);
 
 	printf("Press key to exit\n");

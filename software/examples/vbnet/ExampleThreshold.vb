@@ -6,7 +6,7 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change XYZ to the UID of your Distance IR Bricklet
 
-    ' Callback subroutine for distance reached callback (parameter has unit mm)
+    ' Callback subroutine for distance reached callback
     Sub DistanceReachedCB(ByVal sender As BrickletDistanceIR, ByVal distance As Integer)
         Console.WriteLine("Distance: " + (distance/10.0).ToString() + " cm")
     End Sub
@@ -24,7 +24,7 @@ Module ExampleThreshold
         ' Register distance reached callback to subroutine DistanceReachedCB
         AddHandler dir.DistanceReachedCallback, AddressOf DistanceReachedCB
 
-        ' Configure threshold for distance "smaller than 30 cm" (unit is mm)
+        ' Configure threshold for distance "smaller than 30 cm"
         dir.SetDistanceCallbackThreshold("<"C, 30*10, 0)
 
         Console.WriteLine("Press key to exit")

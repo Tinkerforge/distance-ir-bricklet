@@ -7,7 +7,7 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change XYZ to the UID of your Distance IR Bricklet
 
-# Callback subroutine for distance reached callback (parameter has unit mm)
+# Callback subroutine for distance reached callback
 sub cb_distance_reached
 {
     my ($distance) = @_;
@@ -27,7 +27,7 @@ $dir->set_debounce_period(10000);
 # Register distance reached callback to subroutine cb_distance_reached
 $dir->register_callback($dir->CALLBACK_DISTANCE_REACHED, 'cb_distance_reached');
 
-# Configure threshold for distance "smaller than 30 cm" (unit is mm)
+# Configure threshold for distance "smaller than 30 cm"
 $dir->set_distance_callback_threshold('<', 30*10, 0);
 
 print "Press key to exit\n";

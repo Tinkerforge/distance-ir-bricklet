@@ -13,12 +13,12 @@ ipcon@Connect[host,port]
 (*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
 dir@SetDebouncePeriod[10000]
 
-(*Callback function for distance reached callback (parameter has unit mm)*)
+(*Callback function for distance reached callback*)
 DistanceReachedCB[sender_,distance_]:=
  Print["Distance: "<>ToString[N[Quantity[distance,"cm/10"]]]]
 AddEventHandler[dir@DistanceReachedCallback,DistanceReachedCB]
 
-(*Configure threshold for distance "smaller than 30 cm" (unit is mm)*)
+(*Configure threshold for distance "smaller than 30 cm"*)
 option=Tinkerforge`BrickletDistanceIR`THRESHOLDUOPTIONUSMALLER
 dir@SetDistanceCallbackThreshold[option,30*10,0]
 

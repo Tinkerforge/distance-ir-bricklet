@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current distance (unit is mm)
+    # Get current distance
     distance = dir.get_distance()
     print("Distance: " + str(distance/10.0) + " cm")
 

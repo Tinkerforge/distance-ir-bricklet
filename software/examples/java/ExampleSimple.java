@@ -17,7 +17,7 @@ public class ExampleSimple {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current distance (unit is mm)
+		// Get current distance
 		int distance = dir.getDistance(); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("Distance: " + distance/10.0 + " cm");
 

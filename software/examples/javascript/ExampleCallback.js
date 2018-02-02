@@ -25,7 +25,7 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
 
 // Register distance callback
 dir.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE,
-    // Callback function for distance callback (parameter has unit mm)
+    // Callback function for distance callback
     function (distance) {
         console.log('Distance: ' + distance/10.0 + ' cm');
     }

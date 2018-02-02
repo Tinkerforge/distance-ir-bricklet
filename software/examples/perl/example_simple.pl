@@ -13,7 +13,7 @@ my $dir = Tinkerforge::BrickletDistanceIR->new(&UID, $ipcon); # Create device ob
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Get current distance (unit is mm)
+# Get current distance
 my $distance = $dir->get_distance();
 print "Distance: " . $distance/10.0 . " cm\n";
 

@@ -16,7 +16,7 @@ ipcon.connect(HOST, PORT,
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function (connectReason) {
-        // Get current distance (unit is mm)
+        // Get current distance
         dir.getDistance(
             function (distance) {
                 console.log('Distance: ' + distance/10.0 + ' cm');

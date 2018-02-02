@@ -19,12 +19,12 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 dir.set_debounce_period 10000
 
-# Register distance reached callback (parameter has unit mm)
+# Register distance reached callback
 dir.register_callback(BrickletDistanceIR::CALLBACK_DISTANCE_REACHED) do |distance|
   puts "Distance: #{distance/10.0} cm"
 end
 
-# Configure threshold for distance "smaller than 30 cm" (unit is mm)
+# Configure threshold for distance "smaller than 30 cm"
 dir.set_distance_callback_threshold '<', 30*10, 0
 
 puts 'Press key to exit'

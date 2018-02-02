@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Distance IR Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_distance_ir import BrickletDistanceIR
 
-# Callback function for distance reached callback (parameter has unit mm)
+# Callback function for distance reached callback
 def cb_distance_reached(distance):
     print("Distance: " + str(distance/10.0) + " cm")
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Register distance reached callback to function cb_distance_reached
     dir.register_callback(dir.CALLBACK_DISTANCE_REACHED, cb_distance_reached)
 
-    # Configure threshold for distance "smaller than 30 cm" (unit is mm)
+    # Configure threshold for distance "smaller than 30 cm"
     dir.set_distance_callback_threshold("<", 30*10, 0)
 
     raw_input("Press key to exit\n") # Use input() in Python 3

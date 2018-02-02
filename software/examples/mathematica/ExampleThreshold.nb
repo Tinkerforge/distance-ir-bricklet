@@ -22,12 +22,12 @@ Notebook[{
    RowBox[{"dir", "@", RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for distance reached callback (parameter has unit mm)", "*)"}],
+   RowBox[{"(*", "Callback function for distance reached callback", "*)"}],
    RowBox[{RowBox[{"DistanceReachedCB", "[", RowBox[{"sender_", ",", "distance_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Distance: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"distance", ",", "\"\<cm/10\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"dir", "@", "DistanceReachedCallback"}], ",", "DistanceReachedCB"}], "]"}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Configure threshold for distance ", "\"\<smaller than 30 cm\>\"", " (unit is mm)", "*)"}],
+   RowBox[{"(*", "Configure threshold for distance ", "\"\<smaller than 30 cm\>\"", "", "*)"}],
    RowBox[{"option", "=", "Tinkerforge`BrickletDistanceIR`THRESHOLDUOPTIONUSMALLER"}],
    RowBox[{"dir", "@", RowBox[{"SetDistanceCallbackThreshold", "[", RowBox[{"option", ",", RowBox[{"30", "*", "10"}], ",", "0"}], "]"}]}],
    RowBox[{"

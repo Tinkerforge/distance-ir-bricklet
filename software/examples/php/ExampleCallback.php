@@ -10,7 +10,7 @@ const HOST = 'localhost';
 const PORT = 4223;
 const UID = 'XYZ'; // Change XYZ to the UID of your Distance IR Bricklet
 
-// Callback function for distance callback (parameter has unit mm)
+// Callback function for distance callback
 function cb_distance($distance)
 {
     echo "Distance: " . $distance/10.0 . " cm\n";

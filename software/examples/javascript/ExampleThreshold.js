@@ -19,14 +19,14 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         dir.setDebouncePeriod(10000);
 
-        // Configure threshold for distance "smaller than 30 cm" (unit is mm)
+        // Configure threshold for distance "smaller than 30 cm"
         dir.setDistanceCallbackThreshold('<', 30*10, 0);
     }
 );
 
 // Register distance reached callback
 dir.on(Tinkerforge.BrickletDistanceIR.CALLBACK_DISTANCE_REACHED,
-    // Callback function for distance reached callback (parameter has unit mm)
+    // Callback function for distance reached callback
     function (distance) {
         console.log('Distance: ' + distance/10.0 + ' cm');
     }

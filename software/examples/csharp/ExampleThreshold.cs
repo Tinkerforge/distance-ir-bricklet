@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your Distance IR Bricklet
 
-	// Callback function for distance reached callback (parameter has unit mm)
+	// Callback function for distance reached callback
 	static void DistanceReachedCB(BrickletDistanceIR sender, int distance)
 	{
 		Console.WriteLine("Distance: " + distance/10.0 + " cm");
@@ -27,7 +27,7 @@ class Example
 		// Register distance reached callback to function DistanceReachedCB
 		dir.DistanceReachedCallback += DistanceReachedCB;
 
-		// Configure threshold for distance "smaller than 30 cm" (unit is mm)
+		// Configure threshold for distance "smaller than 30 cm"
 		dir.SetDistanceCallbackThreshold('<', 30*10, 0);
 
 		Console.WriteLine("Press enter to exit");

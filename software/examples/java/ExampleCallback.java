@@ -17,7 +17,7 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Add distance listener (parameter has unit mm)
+		// Add distance listener
 		dir.addDistanceListener(new BrickletDistanceIR.DistanceListener() {
 			public void distance(int distance) {
 				System.out.println("Distance: " + distance/10.0 + " cm");

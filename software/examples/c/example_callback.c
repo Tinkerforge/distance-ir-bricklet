@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Distance IR Bricklet
 
-// Callback function for distance callback (parameter has unit mm)
+// Callback function for distance callback
 void cb_distance(uint16_t distance, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
