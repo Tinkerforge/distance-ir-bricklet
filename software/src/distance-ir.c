@@ -161,7 +161,7 @@ int32_t analog_value_from_mc(const int32_t value) {
 
 int32_t distance_from_analog_value(const int32_t value) {
 	uint16_t div_value = value/DISTANCE_DIVIDER;
-	uint8_t mod = div_value % DISTANCE_DIVIDER;
+	uint8_t mod = value % DISTANCE_DIVIDER;
 
 	uint16_t distance = ((DISTANCE_DIVIDER - mod)*lookup[div_value] +
 						mod*lookup[div_value+1])/DISTANCE_DIVIDER;

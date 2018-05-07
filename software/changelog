@@ -15,3 +15,6 @@
 
 2013-12-19: 2.0.2 (e6ed615)
 - Fix wrong length for GetDebounce packet (through brickletlib)
+
+2018-05-07: 2.0.3 (TBD)
+- Fix bug in distance calculation (interpolation between lookup table values was broken)
