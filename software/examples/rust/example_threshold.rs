@@ -1,5 +1,8 @@
-use std::{error::Error, io, thread};
-use tinkerforge::{distance_ir_bricklet::*, ip_connection::IpConnection};
+use std::{io, error::Error};
+use std::thread;
+use tinkerforge::{ip_connection::IpConnection, 
+                  distance_ir_bricklet::*};
+
 
 const HOST: &str = "localhost";
 const PORT: u16 = 4223;
@@ -10,24 +13,24 @@ fn main() -> Result<(), Box<dyn Error>> {
     let dir = DistanceIrBricklet::new(UID, &ipcon); // Create device object.
 
     ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
-                                          // Don't use device before ipcon is connected.
+    // Don't use device before ipcon is connected.
 
-    // Get threshold receivers with a debounce time of 10 seconds (10000ms).
-    dir.set_debounce_period(10000);
+		// Get threshold receivers with a debounce time of 10 seconds (10000ms).
+		dir.set_debounce_period(10000);
 
-    let distance_reached_receiver = dir.get_distance_reached_callback_receiver();
+     let distance_reached_receiver = dir.get_distance_reached_callback_receiver();
 
-    // Spawn thread to handle received callback messages.
-    // This thread ends when the `dir` object
-    // is dropped, so there is no need for manual cleanup.
-    thread::spawn(move || {
-        for distance_reached in distance_reached_receiver {
-            println!("Distance: {} cm", distance_reached as f32 / 10.0);
-        }
-    });
+        // Spawn thread to handle received callback messages. 
+        // This thread ends when the `dir` object
+        // is dropped, so there is no need for manual cleanup.
+        thread::spawn(move || {
+            for distance_reached in distance_reached_receiver {           
+                		println!("Distance: {} cm", distance_reached as f32 /10.0);
+            }
+        });
 
-    // Configure threshold for distance "smaller than 30 cm".
-    dir.set_distance_callback_threshold('<', 30 * 10, 0);
+		// Configure threshold for distance "smaller than 30 cm".
+		dir.set_distance_callback_threshold('<', 30*10, 0);
 
     println!("Press enter to exit.");
     let mut _input = String::new();
