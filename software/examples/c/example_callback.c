@@ -33,7 +33,7 @@ int main(void) {
 	// Register distance callback to function cb_distance
 	distance_ir_register_callback(&dir,
 	                              DISTANCE_IR_CALLBACK_DISTANCE,
-	                              (void *)cb_distance,
+	                              (void (*)(void))cb_distance,
 	                              NULL);
 
 	// Set period for distance callback to 0.2s (200ms)
